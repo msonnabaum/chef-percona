@@ -22,7 +22,7 @@
 package "mysql-client" do
   package_name value_for_platform(
     [ "centos", "redhat", "suse", "fedora", "scientific", "amazon"] => { "default" => "mysql" },
-    "default" => "mysql-client"
+    "default" => "percona-server-client"
   )
   action :install
 end

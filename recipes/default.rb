@@ -17,4 +17,17 @@
 # limitations under the License.
 #
 
-include_recipe "mysql::client"
+case node['platform']
+when "ubuntu"
+  apt_repository "percona" do
+    uri "http://repo.percona.com/apt"
+    distribution node['lsb']['codename']
+    components ['main']
+    action :add
+    keyserver "keys.gnupg.net"
+    key "CD2EFD2A"
+    action :add
+  end
+end
+
+include_recipe "percona::client"
